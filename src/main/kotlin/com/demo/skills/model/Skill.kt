@@ -2,6 +2,6 @@ package com.demo.skills.model
 
 import java.util.UUID
 
-class Skill(uuid: UUID = UUID.randomUUID(), name: String, domain: String) {
+data class Skill(val uuid: UUID = UUID.randomUUID(), val name: String, val domain: String) {
 
 }
