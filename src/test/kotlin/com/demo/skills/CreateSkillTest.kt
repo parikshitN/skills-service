@@ -2,6 +2,7 @@ package com.demo.skills
 
 import com.demo.skills.domain.usecase.CreateSkill
 import com.demo.skills.domain.usecase.input.SkillInput
+import com.demo.skills.model.Domain
 import com.demo.skills.model.Skill
 import com.demo.skills.repository.SkillRepository
 import io.kotlintest.shouldBe
@@ -23,6 +24,6 @@ class CreateSkillTest {
         }
 
         skill.captured.name shouldBe  "Java"
-        skill.captured.domain shouldBe  "Tech"
+        skill.captured.domain2 shouldBe  Domain.TECH
     }
 }
