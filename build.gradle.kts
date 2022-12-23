@@ -23,6 +23,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.springframework.data:spring-data-jpa")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.0")
@@ -30,6 +31,8 @@ dependencies {
     testImplementation ("org.mockito:mockito-core:4.3.1")
     testImplementation ("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     testImplementation ("io.mockk:mockk:1.9.3")
+    testImplementation("org.testcontainers:testcontainers:1.16.3")
+    testImplementation ("org.testcontainers:mongodb:1.17.6")
 }
 
 tasks.withType<KotlinCompile> {
