@@ -1,12 +1,12 @@
-package com.demo.skills
+package com.demo.skills.domain.usecase
 
 import arrow.core.none
 import com.demo.skills.domain.exception.ApiException
 import com.demo.skills.domain.usecase.CreateSkill
 import com.demo.skills.domain.usecase.input.SkillInput
-import com.demo.skills.model.Domain
-import com.demo.skills.model.Skill
-import com.demo.skills.repository.SkillRepository
+import com.demo.skills.domain.model.Domain
+import com.demo.skills.domain.model.Skill
+import com.demo.skills.domain.repository.SkillRepository
 import io.kotlintest.shouldBe
 import io.mockk.every
 import io.mockk.mockk

@@ -2,7 +2,7 @@ package com.demo.skills.domain.usecase
 
 import com.demo.skills.domain.exception.ApiException
 import com.demo.skills.domain.usecase.input.SkillInput
-import com.demo.skills.repository.SkillRepository
+import com.demo.skills.domain.repository.SkillRepository
 
 class CreateSkill(val skillRepository: SkillRepository) {
     operator fun invoke(skillInput: SkillInput) {

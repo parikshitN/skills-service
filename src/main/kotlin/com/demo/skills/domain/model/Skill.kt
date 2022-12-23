@@ -1,4 +1,4 @@
-package com.demo.skills.model
+package com.demo.skills.domain.model
 
 import java.util.UUID
 

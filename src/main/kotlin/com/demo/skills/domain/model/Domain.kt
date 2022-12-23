@@ -1,4 +1,4 @@
-package com.demo.skills.model
+package com.demo.skills.domain.model
 
 enum class Domain (val value : String){
     TECH("Tech"), BUSINESS("Business"), LEADERSHIP("Leadership");
