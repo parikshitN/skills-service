@@ -16,7 +16,7 @@ class MongoDBContainerInitializer : ApplicationContextInitializer<ConfigurableAp
     override fun initialize(applicationContext: ConfigurableApplicationContext) {
         mongoDB.start()
         TestPropertyValues.of(
-            "spring.datasource.url=${mongoDB.connectionString}",
+            "spring.data.mongodb.uri=${mongoDB.getReplicaSetUrl("skill")}",
         ).applyTo(applicationContext.environment)
     }
 }
