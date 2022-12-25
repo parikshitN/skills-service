@@ -6,6 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.7.10"
     kotlin("plugin.spring") version "1.7.10"
+    id("com.palantir.docker") version "0.21.0"
 }
 
 
@@ -45,3 +46,18 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+group="dockerlearnerpn"
+
+docker {
+    dependsOn(tasks.build.get())
+    name = "${project.group}/skills-service"
+    files(tasks.bootJar.get().archiveFile)
+    print(tasks.bootJar.get().archiveFileName.get())
+    buildArgs(
+        mapOf(
+            "JAR_FILE" to tasks.bootJar.get().archiveFileName.get()
+        )
+    )
+    tag("latest", "${project.group}/skills-service:latest")
+}
+
