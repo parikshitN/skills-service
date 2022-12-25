@@ -17,9 +17,12 @@ class SkillRepositoryImpl(@Autowired private val skillMongoRepository: SkillMong
     }
 
     override fun findByName(name: String): Optional<Skill> {
-       TODO("to be implemented")
+        val skillDocument = skillMongoRepository.findByName(name)
+        return if (skillDocument.isPresent) Optional.of(skillDocument.get().toSkill()) else Optional.empty()
     }
 }
 
 @Component
-interface SkillMongoRepository:  MongoRepository<SkillDocument, UUID>
+interface SkillMongoRepository:  MongoRepository<SkillDocument, UUID> {
+    fun findByName(name: String): Optional<SkillDocument>
+}

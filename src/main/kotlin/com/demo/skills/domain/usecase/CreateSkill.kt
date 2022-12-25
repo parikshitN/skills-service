@@ -5,9 +5,10 @@ import com.demo.skills.domain.usecase.input.SkillInput
 import com.demo.skills.domain.repository.SkillRepository
 
 class CreateSkill(val skillRepository: SkillRepository) {
-    operator fun invoke(skillInput: SkillInput) {
+    operator fun invoke(skillInput: SkillInput): SkillOutput {
         validate(skillInput)
-        skillRepository.save(skillInput.toSkill())
+        val skill = skillRepository.save(skillInput.toSkill())
+        return SkillOutput(skill.uuid, skill.name, skill.domain.value)
     }
 
     private fun validate(skillInput: SkillInput) {
