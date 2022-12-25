@@ -10,15 +10,16 @@ import java.util.UUID
 data class SkillDocument(
     @Id val uuid: UUID,
     val name: String,
-    val domain : String) {
+    val domain: String
+) {
 
-    companion object{
-        fun from(skill: Skill) : SkillDocument {
+    companion object {
+        fun from(skill: Skill): SkillDocument {
             return SkillDocument(skill.uuid, skill.name, skill.domain.value)
         }
     }
 
-    fun toSkill() : Skill {
+    fun toSkill(): Skill {
         return Skill(uuid, name, Domain.from(domain))
     }
 }

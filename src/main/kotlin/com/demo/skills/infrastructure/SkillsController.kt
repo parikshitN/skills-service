@@ -17,8 +17,7 @@ class SkillsController {
     lateinit var createSkill: CreateSkill
 
     @PostMapping
-    fun create(@RequestBody skillInput: SkillInput) : SkillOutput {
+    fun create(@RequestBody skillInput: SkillInput): SkillOutput {
         return createSkill(skillInput)
     }
-
 }

@@ -15,7 +15,8 @@ import kotlin.jvm.optionals.getOrNull
 @SpringBootTest
 @ContextConfiguration(initializers = [MongoDBContainerInitializer::class])
 class SkillRepositoryTest(
-    @Autowired private val skillRepository: SkillRepository, @Autowired private val mongoTemplate: MongoTemplate
+    @Autowired private val skillRepository: SkillRepository,
+    @Autowired private val mongoTemplate: MongoTemplate
 ) {
     @Test
     fun `should save a new skill Java for domain Tech`() {
@@ -25,7 +26,7 @@ class SkillRepositoryTest(
 
         document?.uuid shouldBe saved.uuid
         document?.domain shouldBe saved.domain.value
-        document?.name shouldBe  saved.name
+        document?.name shouldBe saved.name
     }
 
     @OptIn(ExperimentalStdlibApi::class)

@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
 class ApplicationConfiguration {
 
     @Bean
-    fun createSkill(skillRepository: SkillRepository) : CreateSkill {
+    fun createSkill(skillRepository: SkillRepository): CreateSkill {
         return CreateSkill(skillRepository)
     }
 }

@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
-import java.util.*
+import java.util.Optional
+import java.util.UUID
 
 @Repository
 class SkillRepositoryImpl(@Autowired private val skillMongoRepository: SkillMongoRepository) : SkillRepository {
@@ -23,6 +24,6 @@ class SkillRepositoryImpl(@Autowired private val skillMongoRepository: SkillMong
 }
 
 @Component
-interface SkillMongoRepository:  MongoRepository<SkillDocument, UUID> {
+interface SkillMongoRepository : MongoRepository<SkillDocument, UUID> {
     fun findByName(name: String): Optional<SkillDocument>
 }
