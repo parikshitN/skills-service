@@ -3,6 +3,7 @@ package com.demo.skills.domain.usecase
 import com.demo.skills.domain.model.Domain
 import com.demo.skills.domain.model.Skill
 import com.demo.skills.domain.repository.SkillRepository
+import com.demo.skills.domain.usecase.ouput.SkillOutput
 import io.mockk.every
 import io.mockk.mockk
 import org.amshove.kluent.`should be equal to`

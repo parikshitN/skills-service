@@ -1,4 +1,4 @@
-package com.demo.skills.domain.usecase
+package com.demo.skills.domain.usecase.ouput
 
 import java.util.UUID
 

@@ -3,7 +3,7 @@ package com.demo.skills.infrastructure.controller
 import com.demo.skills.domain.model.Domain
 import com.demo.skills.domain.model.Skill
 import com.demo.skills.domain.repository.SkillRepository
-import com.demo.skills.domain.usecase.SkillOutput
+import com.demo.skills.domain.usecase.ouput.SkillOutput
 import com.demo.skills.domain.usecase.input.SkillInput
 import com.demo.skills.infrastructure.repository.MongoDBContainerInitializer
 import org.amshove.kluent.`should be equal to`

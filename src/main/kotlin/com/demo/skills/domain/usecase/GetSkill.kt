@@ -2,6 +2,7 @@ package com.demo.skills.domain.usecase
 
 import com.demo.skills.domain.exception.ApiException
 import com.demo.skills.domain.repository.SkillRepository
+import com.demo.skills.domain.usecase.ouput.SkillOutput
 import java.util.UUID
 
 class GetSkill(private val skillRepository: SkillRepository) {

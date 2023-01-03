@@ -3,7 +3,7 @@ package com.demo.skills.infrastructure
 import com.demo.skills.domain.usecase.CreateSkill
 import com.demo.skills.domain.usecase.GetSkill
 import com.demo.skills.domain.usecase.GetSkills
-import com.demo.skills.domain.usecase.SkillOutput
+import com.demo.skills.domain.usecase.ouput.SkillOutput
 import com.demo.skills.domain.usecase.input.SkillInput
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping

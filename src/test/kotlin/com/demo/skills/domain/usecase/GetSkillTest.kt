@@ -4,6 +4,7 @@ import com.demo.skills.domain.exception.ApiException
 import com.demo.skills.domain.model.Domain
 import com.demo.skills.domain.model.Skill
 import com.demo.skills.domain.repository.SkillRepository
+import com.demo.skills.domain.usecase.ouput.SkillOutput
 import io.kotlintest.shouldBe
 import io.mockk.every
 import io.mockk.mockk
