@@ -4,6 +4,7 @@ import com.demo.skills.domain.repository.SkillRepository
 import com.demo.skills.domain.usecase.CreateSkill
 import com.demo.skills.domain.usecase.GetSkill
 import com.demo.skills.domain.usecase.GetSkills
+import com.demo.skills.domain.usecase.UpdateSkill
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
@@ -34,5 +35,10 @@ class ApplicationConfiguration {
     @Bean
     fun getSkill(skillRepository: SkillRepository): GetSkill {
         return GetSkill(skillRepository)
+    }
+
+    @Bean
+    fun updateSkill(skillRepository: SkillRepository): UpdateSkill {
+        return UpdateSkill(skillRepository)
     }
 }

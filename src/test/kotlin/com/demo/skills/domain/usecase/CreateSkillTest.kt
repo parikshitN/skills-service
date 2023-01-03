@@ -13,6 +13,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.util.Optional
+import java.util.UUID
 
 class CreateSkillTest {
     private val skillRepository = mockk<SkillRepository>(relaxed = true)
@@ -20,7 +21,7 @@ class CreateSkillTest {
 
     @Test
     fun `given skill Java for domain Tech the skill should get added`() {
-        createSkill(SkillInput("Java", "Tech"))
+        createSkill(SkillInput(UUID.randomUUID(), "Java", "Tech"))
 
         val skill = slot<Skill>()
         verify(exactly = 1) {
@@ -35,7 +36,15 @@ class CreateSkillTest {
         every { skillRepository.findByName("Java") } returns
             Optional.of(Skill(name = "Java", domain = Domain.from("Tech")))
 
-        val error = Assertions.assertThrows(ApiException::class.java) { createSkill(SkillInput("Java", "Tech")) }
+        val error = Assertions.assertThrows(ApiException::class.java) {
+            createSkill(
+                SkillInput(
+                    UUID.randomUUID(),
+                    "Java",
+                    "Tech"
+                )
+            )
+        }
 
         error.message shouldBe "Skill Java already exists"
     }

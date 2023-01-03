@@ -3,8 +3,8 @@ package com.demo.skills.infrastructure.controller
 import com.demo.skills.domain.model.Domain
 import com.demo.skills.domain.model.Skill
 import com.demo.skills.domain.repository.SkillRepository
-import com.demo.skills.domain.usecase.ouput.SkillOutput
 import com.demo.skills.domain.usecase.input.SkillInput
+import com.demo.skills.domain.usecase.ouput.SkillOutput
 import com.demo.skills.infrastructure.repository.MongoDBContainerInitializer
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.BeforeEach
@@ -19,6 +19,7 @@ import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.http.RequestEntity
 import org.springframework.test.context.ContextConfiguration
+import java.util.UUID
 import kotlin.jvm.optionals.getOrNull
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -41,7 +42,7 @@ class SkillsControllerTest {
     @OptIn(ExperimentalStdlibApi::class)
     @Test
     fun `should create skill`() {
-        val input = SkillInput("Java", "Tech")
+        val input = SkillInput(UUID.randomUUID(), "Java", "Tech")
 
         val response = restTemplate.postForEntity("http://localhost:$port/api/skills", input, SkillOutput::class.java)
 
@@ -78,5 +79,18 @@ class SkillsControllerTest {
 
         response.statusCode `should be equal to` HttpStatus.OK
         response.body `should be equal to` SkillOutput(skill.uuid, skill.name, skill.domain.label)
+    }
+
+    @Test
+    fun `should update the given skill`() {
+        val skill = Skill(name = "Java", domain = Domain.TECH)
+        skillRepository.save(skill)
+
+        restTemplate.put("http://localhost:$port/api/skills", SkillInput(uuid = skill.uuid, "Java 8", skill.domain.label))
+
+        val actual = skillRepository.findById(skill.uuid).orElse(null)
+        actual?.name `should be equal to` "Java 8"
+        actual?.uuid `should be equal to` skill.uuid
+        actual?.domain `should be equal to` skill.domain
     }
 }
