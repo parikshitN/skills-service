@@ -86,6 +86,17 @@ class SkillRepositoryTest(
         skillRepository.findById(UUID.randomUUID()).isPresent `should be equal to` false
     }
 
+    @Test
+    fun `should delete a skill for a given uuid`() {
+        val skill = Skill(name = "React Js", domain = Domain.TECH)
+        val skillDocument = SkillDocument.from(skill)
+        mongoTemplate.save(skillDocument)
+
+        skillRepository.delete(skill.uuid)
+
+        mongoTemplate.findById(skill.uuid, SkillDocument::class.java) `should be equal to` null
+    }
+
     private fun addSkillsAsPrecondition() {
         val skill1 = SkillDocument.from(Skill(name = "Market Research", domain = Domain.BUSINESS))
         val skill2 = SkillDocument.from(Skill(name = "Java", domain = Domain.TECH))

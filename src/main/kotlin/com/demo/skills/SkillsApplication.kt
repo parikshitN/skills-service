@@ -2,6 +2,7 @@ package com.demo.skills
 
 import com.demo.skills.domain.repository.SkillRepository
 import com.demo.skills.domain.usecase.CreateSkill
+import com.demo.skills.domain.usecase.DeleteSkill
 import com.demo.skills.domain.usecase.GetSkill
 import com.demo.skills.domain.usecase.GetSkills
 import com.demo.skills.domain.usecase.UpdateSkill
@@ -40,5 +41,10 @@ class ApplicationConfiguration {
     @Bean
     fun updateSkill(skillRepository: SkillRepository): UpdateSkill {
         return UpdateSkill(skillRepository)
+    }
+
+    @Bean
+    fun deleteSkill(skillRepository: SkillRepository): DeleteSkill {
+        return DeleteSkill(skillRepository)
     }
 }

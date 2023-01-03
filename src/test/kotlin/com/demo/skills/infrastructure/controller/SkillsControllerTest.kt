@@ -93,4 +93,14 @@ class SkillsControllerTest {
         actual?.uuid `should be equal to` skill.uuid
         actual?.domain `should be equal to` skill.domain
     }
+
+    @Test
+    fun `should delete the skill with given skill uuid`() {
+        val skill = Skill(name = "Java", domain = Domain.TECH)
+        skillRepository.save(skill)
+
+        restTemplate.delete("http://localhost:$port/api/skills?uuid=${skill.uuid}", mapOf("uuuid" to skill.uuid))
+
+        skillRepository.findById(skill.uuid).isPresent `should be equal to` false
+    }
 }

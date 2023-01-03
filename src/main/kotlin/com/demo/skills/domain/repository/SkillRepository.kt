@@ -12,4 +12,5 @@ interface SkillRepository {
     fun findAll(): List<Skill>
     fun deleteAll()
     fun findById(skillId: UUID): Optional<Skill>
+    fun delete(uuid: UUID)
 }

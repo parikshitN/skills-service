@@ -1,18 +1,21 @@
 package com.demo.skills.infrastructure
 
 import com.demo.skills.domain.usecase.CreateSkill
+import com.demo.skills.domain.usecase.DeleteSkill
 import com.demo.skills.domain.usecase.GetSkill
 import com.demo.skills.domain.usecase.GetSkills
 import com.demo.skills.domain.usecase.UpdateSkill
 import com.demo.skills.domain.usecase.input.SkillInput
 import com.demo.skills.domain.usecase.ouput.SkillOutput
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
 
@@ -28,6 +31,8 @@ class SkillsController {
     lateinit var getSkill: GetSkill
     @Autowired
     lateinit var updateSkill: UpdateSkill
+    @Autowired
+    lateinit var deleteSkill: DeleteSkill
 
     @PostMapping
     fun create(@RequestBody skillInput: SkillInput): SkillOutput {
@@ -47,5 +52,11 @@ class SkillsController {
     @PutMapping
     fun updateSkills(@RequestBody skillInput: SkillInput): SkillOutput {
         return updateSkill(skillInput)
+    }
+
+    @DeleteMapping
+    fun delete(@RequestParam uuid: UUID): String {
+        deleteSkill(uuid)
+        return "SKill deleted successfully"
     }
 }
