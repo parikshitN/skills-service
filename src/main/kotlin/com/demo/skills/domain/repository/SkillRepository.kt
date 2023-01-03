@@ -7,4 +7,6 @@ interface SkillRepository {
     fun save(skill: Skill): Skill
 
     fun findByName(name: String): Optional<Skill>
+    fun findAll(): List<Skill>
+    fun deleteAll()
 }

@@ -21,6 +21,15 @@ class SkillRepositoryImpl(@Autowired private val skillMongoRepository: SkillMong
         val skillDocument = skillMongoRepository.findByName(name)
         return if (skillDocument.isPresent) Optional.of(skillDocument.get().toSkill()) else Optional.empty()
     }
+
+    override fun findAll(): List<Skill> {
+        return skillMongoRepository.findAll()
+            .map { it.toSkill() }
+    }
+
+    override fun deleteAll() {
+        skillMongoRepository.deleteAll()
+    }
 }
 
 @Component
