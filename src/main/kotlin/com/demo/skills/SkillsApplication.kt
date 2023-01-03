@@ -2,6 +2,7 @@ package com.demo.skills
 
 import com.demo.skills.domain.repository.SkillRepository
 import com.demo.skills.domain.usecase.CreateSkill
+import com.demo.skills.domain.usecase.GetSkill
 import com.demo.skills.domain.usecase.GetSkills
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -28,5 +29,10 @@ class ApplicationConfiguration {
     @Bean
     fun getSkills(skillRepository: SkillRepository): GetSkills {
         return GetSkills(skillRepository)
+    }
+
+    @Bean
+    fun getSkill(skillRepository: SkillRepository): GetSkill {
+        return GetSkill(skillRepository)
     }
 }

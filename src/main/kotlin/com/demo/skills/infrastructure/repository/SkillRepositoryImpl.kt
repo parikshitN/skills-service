@@ -30,6 +30,11 @@ class SkillRepositoryImpl(@Autowired private val skillMongoRepository: SkillMong
     override fun deleteAll() {
         skillMongoRepository.deleteAll()
     }
+
+    override fun findById(skillId: UUID): Optional<Skill> {
+        val document = skillMongoRepository.findById(skillId)
+        return if (document.isPresent) Optional.of(document.get().toSkill()) else Optional.empty()
+    }
 }
 
 @Component

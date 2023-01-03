@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.test.context.ContextConfiguration
+import java.util.UUID
 import kotlin.jvm.optionals.getOrNull
 
 @SpringBootTest
@@ -33,7 +34,7 @@ class SkillRepositoryTest(
         val document = mongoTemplate.findById(saved.uuid, SkillDocument::class.java)
 
         document?.uuid shouldBe saved.uuid
-        document?.domain shouldBe saved.domain.value
+        document?.domain shouldBe saved.domain.label
         document?.name shouldBe saved.name
     }
 
@@ -46,7 +47,7 @@ class SkillRepositoryTest(
         val actual = skillRepository.findByName("Market Research")
 
         actual.getOrNull()?.name shouldBe "Market Research"
-        actual.getOrNull()?.domain?.value shouldBe "Business"
+        actual.getOrNull()?.domain?.label shouldBe "Business"
     }
 
     @Test
@@ -67,6 +68,22 @@ class SkillRepositoryTest(
 
         val actual = mongoTemplate.findAll(SkillDocument::class.java)
         actual.size `should be equal to` 0
+    }
+
+    @Test
+    fun `should get the skill for a given uuid`() {
+        val skill = Skill(name = "Block Chain", domain = Domain.BUSINESS)
+        val skillDocument = SkillDocument.from(skill)
+        mongoTemplate.save(skillDocument)
+
+        val actual = skillRepository.findById(skillDocument.uuid).orElse(null)
+
+        actual `should be equal to` skill
+    }
+
+    @Test
+    fun `should return empty if no skill exists for given uuid`() {
+        skillRepository.findById(UUID.randomUUID()).isPresent `should be equal to` false
     }
 
     private fun addSkillsAsPrecondition() {

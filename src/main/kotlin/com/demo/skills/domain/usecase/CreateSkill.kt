@@ -8,7 +8,7 @@ class CreateSkill(val skillRepository: SkillRepository) {
     operator fun invoke(skillInput: SkillInput): SkillOutput {
         validate(skillInput)
         val skill = skillRepository.save(skillInput.toSkill())
-        return SkillOutput(skill.uuid, skill.name, skill.domain.value)
+        return SkillOutput(skill.uuid, skill.name, skill.domain.label)
     }
 
     private fun validate(skillInput: SkillInput) {

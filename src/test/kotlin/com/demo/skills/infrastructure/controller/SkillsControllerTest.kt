@@ -52,7 +52,7 @@ class SkillsControllerTest {
 
         val saved = skillRepository.findByName("Java")
         saved.getOrNull()?.name `should be equal to` "Java"
-        saved.getOrNull()?.domain?.value `should be equal to` "Tech"
+        saved.getOrNull()?.domain?.label `should be equal to` "Tech"
     }
 
     @Test
@@ -67,5 +67,16 @@ class SkillsControllerTest {
 
         response.statusCode `should be equal to` HttpStatus.OK
         response.body?.map { it.name } `should be equal to` listOf("Java", "Kotlin", "Accounting")
+    }
+
+    @Test
+    fun `should get a skill for a given skill uuid`() {
+        val skill = Skill(name = "Java", domain = Domain.TECH)
+        skillRepository.save(skill)
+
+        val response = restTemplate.getForEntity("http://localhost:$port/api/skills/${skill.uuid}", SkillOutput::class.java)
+
+        response.statusCode `should be equal to` HttpStatus.OK
+        response.body `should be equal to` SkillOutput(skill.uuid, skill.name, skill.domain.label)
     }
 }

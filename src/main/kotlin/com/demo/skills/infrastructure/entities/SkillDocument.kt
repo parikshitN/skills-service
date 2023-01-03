@@ -15,7 +15,7 @@ data class SkillDocument(
 
     companion object {
         fun from(skill: Skill): SkillDocument {
-            return SkillDocument(skill.uuid, skill.name, skill.domain.value)
+            return SkillDocument(skill.uuid, skill.name, skill.domain.label)
         }
     }
 
