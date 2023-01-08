@@ -6,5 +6,5 @@ spring:
   data:
     mongodb:
       database: ${skill_mongo_database:skill}
-      uri: ${skill_mongo_uri:mongodb://localhost:27018}
+      uri: ${skill_mongo_uri:mongodb://localhost:27017}
 
