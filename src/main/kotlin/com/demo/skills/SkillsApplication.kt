@@ -1,6 +1,6 @@
 package com.demo.skills
 
-import com.demo.skills.domain.publisher.EventPublisher
+import com.demo.skills.domain.event.publisher.EventPublisher
 import com.demo.skills.domain.repository.SkillRepository
 import com.demo.skills.domain.usecase.CreateSkill
 import com.demo.skills.domain.usecase.DeleteSkill
@@ -21,7 +21,6 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
-
 
 @SpringBootApplication
 class SkillsApplication
@@ -91,5 +90,4 @@ class ApplicationConfiguration {
     fun messageConverter(): MessageConverter? {
         return Jackson2JsonMessageConverter()
     }
-
 }
